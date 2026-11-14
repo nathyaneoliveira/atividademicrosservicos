@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: notification-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: "${RABBITMQ_USERNAME}"
+    password: "${RABBITMQ_PASSWORD}"
+    # Confirmação automática após processamento
+    listener:
+      simple:
+        acknowledge-mode: auto
+        # Evita que mensagens inválidas sejam reenfileiradas indefinidamente
+        default-requeue-rejected: false
+
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${random.value}
+

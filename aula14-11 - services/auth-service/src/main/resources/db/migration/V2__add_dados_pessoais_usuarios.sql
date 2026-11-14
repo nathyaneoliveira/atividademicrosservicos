@@ -1,0 +1,5 @@
+ALTER TABLE tb_usuarios
+    ADD COLUMN nome VARCHAR(150) NOT NULL AFTER email,
+    ADD COLUMN cpf VARCHAR(11) NOT NULL AFTER nome,
+    ADD COLUMN telefone VARCHAR(15) NOT NULL AFTER cpf,
+    ADD CONSTRAINT uk_tb_usuarios_cpf UNIQUE (cpf);

@@ -1,0 +1,6 @@
+CREATE TABLE equipamentos (
+    id CHAR(36) NOT NULL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    condicao VARCHAR(20) NOT NULL DEFAULT 'BOM',
+    reservado BOOLEAN NOT NULL DEFAULT FALSE
+);

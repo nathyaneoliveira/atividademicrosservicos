@@ -1,0 +1,17 @@
+# Java build output
+**/target/
+**/build/
+*.class
+
+# IDE and local workspace files
+**/.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# Local logs and environment secrets
+*.log
+.env
+.env.*
+!.env.example

@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: inscricao-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: "${RABBITMQ_USERNAME}"
+    password: "${RABBITMQ_PASSWORD}"
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ms-inscricoes-db?createDatabaseIfNotExist=true
+    username: "${DB_USERNAME}"
+    password: "${DB_PASSWORD}"
+  jpa:
+    #hibernate:
+    #ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+
+api:
+  security:
+    token:
+      secret: "${JWT_SECRET}"
+
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${random.value}
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      buscarUsuario:
+        slidingWindowSize: 3
+        slidingWindowType: COUNT_BASED
+        minimumNumberOfCalls: 5
+        waitDurationInOpenState: 60s
